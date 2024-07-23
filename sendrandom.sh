@@ -8,6 +8,7 @@ ENVID=`grep ENVID variables | awk -F\" '{print $2}'`
 RUNS=`grep RUNS variables | awk -F\= '{print $2}'`
 BADACTORS=`grep BADACTORS variables | awk -F\" '{print $2}'`
 DEBUG=`grep DEBUG variables | awk -F\" '{print $2}'`
+LOWRATIO=`grep LOWRATIO variables | awk -F\= '{print $2}'`
 
 TOKEN=`./gettoken.py $myclient $client_secret $ENVID | grep access_token | awk -F\" '{print $4}'`
 
@@ -28,14 +29,25 @@ if [[ $DEBUG == "YES" ]] ;
  then
   export CURLCMD="curl --location"
  else 
-  export CURLCMD="curl -s -o --location"
+  export CURLCMD="curl -s -o output.tmp --location"
 fi
 
 # FUNCTION TO SEND REQUESTS
 THROWTHEPIE () {
 #Assign the userinformation from the files here
 #using gawk number of lines NR we select the exact line of the source file to be returned in the assigned variable
-
+# Adding capability to force oveeride so 60% will be low
+  FORCELOW=`jot -r 1 1 10` # Assign random number between 1 and 10
+  if [ "$FORCELOW" \> "$LOWRATIO" ]; #If FORCELOW is higher than LOWRATIO send LOW Risk 
+    then
+      if [[ $BADSAUCE == "NO" ]];
+        then
+          LOWRISK="LabLow";
+      fi
+    else
+      LOWRISK="NA";
+  fi;
+  
   echo "Name is $NAME and source app is $APP domain is $MAILDOMAIN"
   echo "Emails is $MAIL and Client browser: $AGENT and their ip is $IP"
   echo "--"
@@ -49,6 +61,7 @@ THROWTHEPIE () {
   			"id": "15fa85c0742a8be144a703f6b14b2888",
   			"name": "RiskMFAScoring"
   		},
+    "inducerisk": "'"$LOWRISK"'",
   		"ip": "'"$IP"'",
   		"flow": {
   			"type": "AUTHENTICATION"
@@ -168,7 +181,7 @@ do
   CHOOSEBADAPP=`jot -r 1 1 "$APPSCOUNT"`
 # increase the counter
   i=$(($i+1))
-
+  BADSAUCE="NO"
   # Show run counter
   echo "We are loading number $i"
   
@@ -191,10 +204,8 @@ if [[ "$BADACTORS" == "YES" ]] ;
   MAIL=`echo $NAME | sed 's/ /./' | sed 's/$/@'"$MAILDOMAIN"'/' ` 
   APP=`gawk "NR==$CHOOSEBADAPP" AppsUsed`
   IP=`gawk "NR=="$CHOOSEBADIP"" badips`
+  BADSAUCE="YES"
   THROWTHEPIE
 fi
 
 done
-
-
-
