@@ -1,0 +1,105 @@
+{
+  "event": {
+    "completionStatus": "IN_PROGRESS",
+    "targetResource": {
+      "id": "15fa85c0742a8be144a703f6b14b2888",
+      "name": "RiskMFAScoring"
+    },
+    "inducerisk": "LOWRISK",
+    "ip": "IP",
+    "flow": {
+      "type": "AUTHENTICATION"
+    },
+    "session": {
+      "id": "002b1094-9676-42c3-9f4f-56ef112c6918"
+    },
+    "user": {
+      "id": "MAIL",
+      "name": "NAME",
+      "type": "EXTERNAL",
+      "groups": [
+        {
+          "name": "seasonal"
+        },
+        {
+          "name": "yellow"
+        }
+      ]
+    },
+    "sharingType": "SHARED",
+    "browser": {
+      "userAgent": "AGENT",
+      "language": "en",
+      "colorDepth": 24,
+      "deviceMemory": 8,
+      "hardwareConcurrency": 8,
+      "screenResolution": [
+        900,
+        1440
+      ],
+      "availableScreenResolution": [
+        877,
+        1380
+      ],
+      "timezoneOffset": -5,
+      "timezone": "New York/US",
+      "sessionStorage": true,
+      "localStorage": true,
+      "indexedDb": true,
+      "addBehaviour": null,
+      "openDatabase": true,
+      "cpuClass": "not available",
+      "platform": "'PLATFORM",
+      "plugins": [
+        [
+          "Chrome PDF Plugin",
+          "Portable Document Format",
+          [
+            "application x-google-chrome-pdf",
+            "pfg"
+          ]
+        ],
+        [
+          "Chrome PDF Viewer",
+          [
+            "application x-google-chrome-pdf",
+            "pdf"
+          ]
+        ]
+      ],
+      "webglVendorAndRenderer": "Intel Inc.~Intel Iris Pro OpenGL Engine",
+      "webgl": [
+        "webgl aliased line width range:[1, 1]",
+        "webgl alpha bits:8",
+        "webgl antialiasing:yes",
+        "webgl blue bits:8",
+        "webgl depth bits:24",
+        "webgl green bits:8",
+        "webgl max anisotropy:16"
+      ],
+      "adBlock": false,
+      "hasLiedLanguages": false,
+      "hasLiedResolution": false,
+      "hasLiedOs": false,
+      "hasLiedBrowser": false,
+      "touchSupport": [
+        "0",
+        "false",
+        "false"
+      ],
+      "fonts": [
+        "Arial",
+        "Comic Sans MS",
+        "Courier",
+        "Courier New",
+        "Helvetica"
+      ],
+      "audio": "124.04345808873768"
+    },
+    "origin": "APP"
+  },
+  "riskPolicySet": {
+    "id": "RISKID",
+    "name": "Default Risk Policy"
+  }
+}
